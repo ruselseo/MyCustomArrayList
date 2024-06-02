@@ -1,20 +1,10 @@
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class CustomArrayList<E> {
     private Object[] array;
     private int size;
     private final int capacity;
-
-    @Override
-    public String toString() {
-        return "CustomArrayList{" +
-                Arrays.toString(array) +
-                '}';
-    }
 
     public CustomArrayList() {
         this.size = 0;
@@ -32,6 +22,16 @@ public class CustomArrayList<E> {
             throw new IllegalArgumentException("Illegal Capacity: Capacity should be greater than 0," +
                     " your capacity is: " + capacity);
         }
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public int getCapacity() { return array.length; }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public void add(E e) {
@@ -81,39 +81,41 @@ public class CustomArrayList<E> {
     }
 
     public void addAllCollection(Collection<? extends E> list) {
-//        E[] list1 = (E[]) list.toArray();
         addAllFromArray((E[]) list.toArray());
+    }
+
+    public void set(int index, E e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Illegal index: " + index);
+        }
+        array[index] = e;
     }
 
     public E get(int index) {
         return (E) array[index];
     }
 
-    public void remove(int index) {
-        array[index] = null;
+    public Object remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Illegal index: " + index);
+        }
+        Object removedObject = array[index];
         for (int i = index; i < size; i++) {
             array[i] = array[i + 1];
         }
-        array[size--] = null;
+        size--;
+        return removedObject;
     }
 
     public void clear() {
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < size; i++) {
             array[i] = null;
-            size--;
         }
+        size = 0;
     }
 
-    public int size() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public Object[] toArray(CustomArrayList<E> a) {
-        return a.array;
+    public Object[] toArray() {
+        return array;
     }
 
     private void grow() {
@@ -122,18 +124,30 @@ public class CustomArrayList<E> {
         array = newArray;
     }
 
+    @Override
+    public String toString() {
+        return "CustomArrayList{" +
+                Arrays.toString(array) +
+                '}';
+    }
+
     public static void main(String[] args) {
-
-
+        ArrayList<Integer> list12 = new ArrayList<>();
+        list12.add(1);
+        list12.add(2);
+        list12.add(3);
+        list12.set(2,4);
+        System.out.println(list12);
         List<String> list = List.of("12", "213", "12", "12", "43");
         System.out.println();
         CustomArrayList<Integer> intList = new CustomArrayList<>(1);
         System.out.println(intList.size);
+        System.out.println("Capacity "+intList.getCapacity());
         System.out.println(intList.array.length);
         intList.add(1);
         intList.add(2);
         intList.add(3);
-        intList.add(4);
+//        intList.add(4,4);
         System.out.println(intList.size);
         System.out.println(intList.array.length);
 //        System.out.println("Get "+intList.array[0]);
@@ -145,7 +159,7 @@ public class CustomArrayList<E> {
         for (int i = 0; i < intList.size(); i++) {
             System.out.println("NUMBER "+ intList.get(i));}
         System.out.println("______________________________-");
-        intList.add(2, 10);
+//        intList.add(2, 10);
         for (int i = 0; i < intList.size(); i++) {
             System.out.println("NUMBER "+ intList.get(i));}
         System.out.println("______________________________-");
