@@ -6,8 +6,7 @@ public class CustomQuickSort {
     {
         if (list.isEmpty())
             return list; // start with recursion base case
-        CustomArrayList<Oranges> sorted;  // this will
-        // be the sorted list to return, no need to initialise
+        CustomArrayList<Oranges> sorted;  // this will be the sorted list to return, no need to initialise
         CustomArrayList<Oranges> smaller = new CustomArrayList<>(); // Oranges smaller than pivot
         CustomArrayList<Oranges> greater = new CustomArrayList<>(); // Oranges greater than pivot
         Oranges pivot = list.get(0);  // first Oranges in list, used as pivot

@@ -144,4 +144,5 @@ class CustomArrayListTest {
         assertEquals(4, list.getCapacity());
     }
 
+
 }
