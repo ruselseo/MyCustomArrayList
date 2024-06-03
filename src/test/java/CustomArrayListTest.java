@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -201,5 +202,50 @@ public class CustomArrayListTest {
         CustomArrayList<String> list1 = new CustomArrayList<>();
         list1.addAllCollection(collection);
         assertEquals("CustomArrayList{['Hello, hi, how, are, you, null, null, null, null, null]}", list1.toString());
+    }
+
+
+    /**
+     * Tests the Comparable sort method with a multiple-element list.
+     * Verifies that the elements are sorted correctly.
+     * Assuming Oranges are sorted by their size
+     */
+    @Test
+    public void testSortComparable(){
+        list = new CustomArrayList<>(5);
+        Oranges orange1 = new Oranges(2);
+        Oranges orange2 = new Oranges(5);
+        Oranges orange3 = new Oranges(8);
+
+        list.add(orange3);
+        list.add(orange1);
+        list.add(orange2);
+
+        CustomArrayList<Oranges> sortedList = list.sort();
+
+        assertEquals("CustomArrayList{[Oranges{size=2}, Oranges{size=5}, Oranges{size=8}," +
+                " null, null, null, null, null, null, null]}" ,sortedList.toString());
+    }
+
+    /**
+     * Tests the Comparator sort method with a multiple-element list.
+     * Verifies that the elements are sorted correctly.
+     * Assuming Oranges are sorted by their size
+     */
+    @Test
+    public void testSortComparator(){
+        list = new CustomArrayList<>(5);
+        Oranges orange1 = new Oranges(2);
+        Oranges orange2 = new Oranges(5);
+        Oranges orange3 = new Oranges(8);
+
+        list.add(orange3);
+        list.add(orange1);
+        list.add(orange2);
+
+        CustomArrayList<Oranges> sortedList = list.sort(Oranges::compareTo);
+
+        assertEquals("CustomArrayList{[Oranges{size=2}, Oranges{size=5}, Oranges{size=8}," +
+                " null, null, null, null, null, null, null]}" ,sortedList.toString());
     }
 }
