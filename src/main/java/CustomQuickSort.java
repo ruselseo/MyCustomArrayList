@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 /**
- * A utility class that provides a custom implementation of the QuickSort algorithm for sorting a list of Oranges.
+ * A utility class that provides a custom implementation of the QuickSort algorithm for sorting a list of any type.
  */
 public class CustomQuickSort {
 
