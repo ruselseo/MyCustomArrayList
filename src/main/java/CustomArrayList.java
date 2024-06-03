@@ -5,7 +5,7 @@ import java.util.*;
  *
  * @param <E> the type of elements in this list
  */
-public class CustomArrayList<E>{
+public class CustomArrayList<E> {
     private Object[] array;
     private int size;
     private final int capacity;

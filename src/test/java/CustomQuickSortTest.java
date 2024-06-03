@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -97,5 +99,36 @@ public class CustomQuickSortTest {
         for (int i = 0; i < sortedList.size(); i++) {
             assertEquals(sortedList.get(i), result.get(i));
         }
+    }
+
+
+    /**
+     * Tests the quickSort method with a list of Integers.
+     */
+    @Test
+    public void SortIntegerListTest() {
+        CustomArrayList intList = new CustomArrayList<>();
+        intList.add(3);
+        intList.add(1);
+        intList.add(4);
+        intList.add(1);
+        intList.add(5);
+        intList.add(9);
+        Comparator<Integer> intComparator = Integer::compareTo;
+        CustomArrayList<Integer> sortedIntList = CustomQuickSort.quickSort(intList, intComparator);
+        assertEquals("CustomArrayList{[1, 1, 3, 4, 5, 9, null, null, null, null]}", sortedIntList.toString());
+    }
+
+    @Test
+    public void SortStringListTest() {
+        CustomArrayList stringList = new CustomArrayList<>();
+        stringList = new CustomArrayList<>();
+        stringList.add("banana");
+        stringList.add("apple");
+        stringList.add("cherry");
+
+        Comparator<String> stringComparator = String::compareTo;
+        CustomArrayList<String> sortedStringList = CustomQuickSort.quickSort(stringList, stringComparator);
+        assertEquals("CustomArrayList{[apple, banana, cherry, null, null, null, null, null, null, null]}", sortedStringList.toString());
     }
 }
