@@ -224,10 +224,19 @@ public class CustomArrayList<E> {
                 '}';
     }
 
+    /**
+     * Sorts the parametrized list using Comparable and the QuickSort algorithm
+     * @return the sorted list of Oranges
+     */
     public <E extends Comparable<E>> CustomArrayList<E> sort(){
        return CustomQuickSort.quickSort((CustomArrayList<E>) this);
     }
 
+    /**
+     * Sorts the parametrized list using Comparator and the QuickSort algorithm.
+     * @param comparator compares list's type of object based on it's Comparator.
+     * @return the sorted list of Oranges
+     */
     public <E> CustomArrayList<E> sort(Comparator<E> comparator){
        return CustomQuickSort.quickSort((CustomArrayList<E>) this, comparator);
     }
