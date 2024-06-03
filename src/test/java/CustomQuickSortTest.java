@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CustomQuickSortTest {
 
     /**
-     * Tests the quickSort method with an empty list.
+     * Tests the Comparator quickSort method with an empty list.
      * Verifies that the sorted list is also empty.
      */
     @Test
@@ -21,7 +21,7 @@ public class CustomQuickSortTest {
     }
 
     /**
-     * Tests the quickSort method with a single-element list.
+     * Tests the Comparator quickSort method with a single-element list.
      * Verifies that the sorted list contains the same single element.
      */
     @Test
@@ -35,7 +35,7 @@ public class CustomQuickSortTest {
     }
 
     /**
-     * Tests the quickSort method with a multiple-element list.
+     * Tests the Comparator quickSort method with a multiple-element list.
      * Verifies that the elements are sorted correctly.
      * Assuming Oranges are sorted by their size or some other attribute
      */
@@ -69,7 +69,101 @@ public class CustomQuickSortTest {
         for (int i = 0; i < expectedList.size(); i++) {
             assertEquals(expectedList.get(i), sortedList.get(i));
         }
-    }@Test
+    }
+
+    /**
+     * Tests the Comparator quickSort method with an already sorted list.
+     * Verifies that the sorted list remains unchanged.
+     */
+    @Test
+    public void QuickSortAlreadySortedTest() {
+        Oranges orange1 = new Oranges(2);
+        Oranges orange2 = new Oranges(5);
+        Oranges orange3 = new Oranges(8);
+
+        CustomArrayList<Oranges> sortedList = new CustomArrayList<>();
+        sortedList.add(orange1);
+        sortedList.add(orange2);
+        sortedList.add(orange3);
+
+        CustomArrayList<Oranges> result = CustomQuickSort.quickSort(sortedList, Oranges::compareTo);
+
+        assertEquals(orange1, result.get(0));
+        assertEquals(orange2, result.get(1));
+        assertEquals(orange3, result.get(2));
+
+        assertEquals("CustomArrayList{[Oranges{size=2}, Oranges{size=5}, Oranges{size=8}," +
+                " null, null, null, null, null, null, null]}", result.toString());
+
+        assertEquals(sortedList.size(), result.size());
+        for (int i = 0; i < sortedList.size(); i++) {
+            assertEquals(sortedList.get(i), result.get(i));
+        }
+    }
+
+
+    /**
+     * Tests the Comparator quickSort method with a list of Integers.
+     */
+    @Test
+    public void SortIntegerListTest() {
+        CustomArrayList intList = new CustomArrayList<>();
+        intList.add(3);
+        intList.add(1);
+        intList.add(4);
+        intList.add(1);
+        intList.add(5);
+        intList.add(9);
+        CustomArrayList<Integer> sortedIntList = CustomQuickSort.quickSort(intList, Integer::compareTo);
+        assertEquals("CustomArrayList{[1, 1, 3, 4, 5, 9, null, null, null, null]}", sortedIntList.toString());
+    }
+
+    /**
+     * Tests the Comparator quickSort method with a list of Strings.
+     */
+    @Test
+    public void SortStringListTest() {
+        CustomArrayList stringList = new CustomArrayList<>();
+        stringList = new CustomArrayList<>();
+        stringList.add("banana");
+        stringList.add("apple");
+        stringList.add("cherry");
+
+        CustomArrayList<String> sortedStringList = CustomQuickSort.quickSort(stringList, String::compareTo);
+        assertEquals("CustomArrayList{[apple, banana, cherry, null, null, null, null, null, null, null]}", sortedStringList.toString());
+    }
+
+    /**
+     * Tests the Comparable quickSort method with an empty list.
+     * Verifies that the sorted list is also empty.
+     */
+    @Test
+    public void ComparableQuickSortEmptyListTest() {
+        CustomArrayList<Oranges> emptyList = new CustomArrayList<>();
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(emptyList);
+        assertTrue(sortedList.isEmpty());
+    }
+
+    /**
+     * Tests the Comparable quickSort method with a single-element list.
+     * Verifies that the sorted list contains the same single element.
+     */
+    @Test
+    public void ComparableQuickSortSingleElementListTest() {
+        Oranges orange = new Oranges(5); // Example constructor
+        CustomArrayList<Oranges> singleElementList = new CustomArrayList<>();
+        singleElementList.add(orange);
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(singleElementList);
+        assertEquals(1, sortedList.size());
+        assertEquals(orange, sortedList.get(0));
+    }
+
+    /**
+     * Tests the Comparable quickSort method with a multiple-element list.
+     * Verifies that the elements are sorted correctly.
+     * Assuming Oranges are sorted by their size or some other attribute
+     */
+    @Test
     public void ComparableQuickSortMultipleElementsTest() {
         Oranges orange1 = new Oranges(5);
         Oranges orange2 = new Oranges(2);
@@ -102,11 +196,11 @@ public class CustomQuickSortTest {
     }
 
     /**
-     * Tests the quickSort method with an already sorted list.
+     * Tests the Comparable quickSort method with an already sorted list.
      * Verifies that the sorted list remains unchanged.
      */
     @Test
-    public void QuickSortAlreadySortedTest() {
+    public void ComparableQuickSortAlreadySortedTest() {
         Oranges orange1 = new Oranges(2);
         Oranges orange2 = new Oranges(5);
         Oranges orange3 = new Oranges(8);
@@ -116,7 +210,7 @@ public class CustomQuickSortTest {
         sortedList.add(orange2);
         sortedList.add(orange3);
 
-        CustomArrayList<Oranges> result = CustomQuickSort.quickSort(sortedList, Oranges::compareTo);
+        CustomArrayList<Oranges> result = CustomQuickSort.quickSort(sortedList);
 
         assertEquals(orange1, result.get(0));
         assertEquals(orange2, result.get(1));
@@ -133,10 +227,10 @@ public class CustomQuickSortTest {
 
 
     /**
-     * Tests the quickSort method with a list of Integers.
+     * Tests the Comparable quickSort method with a list of Integers.
      */
     @Test
-    public void SortIntegerListTest() {
+    public void ComparableSortIntegerListTest() {
         CustomArrayList intList = new CustomArrayList<>();
         intList.add(3);
         intList.add(1);
@@ -144,25 +238,22 @@ public class CustomQuickSortTest {
         intList.add(1);
         intList.add(5);
         intList.add(9);
-        Comparator<Integer> intComparator = Integer::compareTo;
-        CustomArrayList<Integer> sortedIntList = CustomQuickSort.quickSort(intList, intComparator);
+        CustomArrayList<Integer> sortedIntList = CustomQuickSort.quickSort(intList);
         assertEquals("CustomArrayList{[1, 1, 3, 4, 5, 9, null, null, null, null]}", sortedIntList.toString());
     }
 
     /**
-     * Tests the quickSort method with a list of Strings.
+     * Tests the Comparable quickSort method with a list of Strings.
      */
-
     @Test
-    public void SortStringListTest() {
+    public void ComparableSortStringListTest() {
         CustomArrayList stringList = new CustomArrayList<>();
         stringList = new CustomArrayList<>();
         stringList.add("banana");
         stringList.add("apple");
         stringList.add("cherry");
 
-        Comparator<String> stringComparator = String::compareTo;
-        CustomArrayList<String> sortedStringList = CustomQuickSort.quickSort(stringList, stringComparator);
+        CustomArrayList<String> sortedStringList = CustomQuickSort.quickSort(stringList);
         assertEquals("CustomArrayList{[apple, banana, cherry, null, null, null, null, null, null, null]}", sortedStringList.toString());
     }
 
