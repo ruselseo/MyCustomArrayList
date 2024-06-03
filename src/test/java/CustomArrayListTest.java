@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -188,5 +190,16 @@ public class CustomArrayListTest {
         assertEquals(2, list.getCapacity());
         list.add(orange3);
         assertEquals(4, list.getCapacity());
+    }
+
+    /**
+     * Test method addAllCollection on list of String elements
+     */
+    @Test
+    public void testAddAllCollection(){
+        List<String> collection = List.of("'Hello", "hi", "how", "are", "you");
+        CustomArrayList<String> list1 = new CustomArrayList<>();
+        list1.addAllCollection(collection);
+        assertEquals("CustomArrayList{['Hello, hi, how, are, you, null, null, null, null, null]}", list1.toString());
     }
 }

@@ -119,6 +119,10 @@ public class CustomQuickSortTest {
         assertEquals("CustomArrayList{[1, 1, 3, 4, 5, 9, null, null, null, null]}", sortedIntList.toString());
     }
 
+    /**
+     * Tests the quickSort method with a list of Strings.
+     */
+
     @Test
     public void SortStringListTest() {
         CustomArrayList stringList = new CustomArrayList<>();
@@ -131,4 +135,5 @@ public class CustomQuickSortTest {
         CustomArrayList<String> sortedStringList = CustomQuickSort.quickSort(stringList, stringComparator);
         assertEquals("CustomArrayList{[apple, banana, cherry, null, null, null, null, null, null, null]}", sortedStringList.toString());
     }
+
 }
