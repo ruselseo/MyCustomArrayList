@@ -1,9 +1,15 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * Unit tests for the {@link Oranges} class.
+ */
 public class OrangesTest {
 
+    /**
+     * Tests the default constructor of the {@link Oranges} class.
+     * Verifies that the size of the orange is within the expected range (1 to 10).
+     */
     @Test
     public void testOrangeConstructor() {
         Oranges orange1 = new Oranges();
@@ -12,6 +18,10 @@ public class OrangesTest {
         assertTrue(orange1.getSize() < 11);
     }
 
+    /**
+     * Tests the compare method of the {@link Oranges} class.
+     * Verifies that the comparison is done correctly based on the size of the oranges.
+     */
     @Test
     public void testCompare() {
         Oranges orange1 = new Oranges(5);
@@ -20,6 +30,10 @@ public class OrangesTest {
         assertEquals(-2, orange1.compare(orange1, orange2));
     }
 
+    /**
+     * Tests the toString method of the {@link Oranges} class.
+     * Verifies that the string representation of an orange is as expected.
+     */
     @Test
     public void testToString() {
         Oranges orange1 = new Oranges(5);

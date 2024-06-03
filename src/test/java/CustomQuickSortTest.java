@@ -1,11 +1,16 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the {@link CustomQuickSort} class.
+ */
 public class CustomQuickSortTest {
 
+    /**
+     * Tests the quickSort method with an empty list.
+     * Verifies that the sorted list is also empty.
+     */
     @Test
     public void QuickSortEmptyListTest() {
         CustomArrayList<Oranges> emptyList = new CustomArrayList<>();
@@ -13,6 +18,10 @@ public class CustomQuickSortTest {
         assertTrue(sortedList.isEmpty());
     }
 
+    /**
+     * Tests the quickSort method with a single-element list.
+     * Verifies that the sorted list contains the same single element.
+     */
     @Test
     public void QuickSortSingleElementListTest() {
         Oranges orange = new Oranges(5); // Example constructor
@@ -23,6 +32,11 @@ public class CustomQuickSortTest {
         assertEquals(orange, sortedList.get(0));
     }
 
+    /**
+     * Tests the quickSort method with a multiple-element list.
+     * Verifies that the elements are sorted correctly.
+     * Assuming Oranges are sorted by their size or some other attribute
+     */
     @Test
     public void QuickSortMultipleElementsTest() {
         Oranges orange1 = new Oranges(5);
@@ -43,7 +57,7 @@ public class CustomQuickSortTest {
         assertEquals("CustomArrayList{[Oranges{size=2}, Oranges{size=5}, Oranges{size=8}," +
                 " null, null, null, null, null, null, null]}", sortedList.toString());
 
-        // Assuming Oranges are sorted by their weight or some other attribute
+
         CustomArrayList<Oranges> expectedList = new CustomArrayList<>();
         expectedList.add(orange2);
         expectedList.add(orange1);
@@ -55,6 +69,10 @@ public class CustomQuickSortTest {
         }
     }
 
+    /**
+     * Tests the quickSort method with an already sorted list.
+     * Verifies that the sorted list remains unchanged.
+     */
     @Test
     public void QuickSortAlreadySortedTest() {
         Oranges orange1 = new Oranges(2);
