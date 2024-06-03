@@ -23,11 +23,11 @@ public class OrangesTest {
      * Verifies that the comparison is done correctly based on the size of the oranges.
      */
     @Test
-    public void testCompare() {
+    public void testCompareTo() {
         Oranges orange1 = new Oranges(5);
         Oranges orange2 = new Oranges(7);
 
-        assertEquals(-2, orange1.compare(orange1, orange2));
+        assertEquals(-2, orange1.compareTo(orange2));
     }
 
     /**

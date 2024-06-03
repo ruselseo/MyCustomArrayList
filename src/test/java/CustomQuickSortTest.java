@@ -14,7 +14,7 @@ public class CustomQuickSortTest {
     @Test
     public void QuickSortEmptyListTest() {
         CustomArrayList<Oranges> emptyList = new CustomArrayList<>();
-        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(emptyList);
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(emptyList, Oranges::compareTo);
         assertTrue(sortedList.isEmpty());
     }
 
@@ -27,7 +27,7 @@ public class CustomQuickSortTest {
         Oranges orange = new Oranges(5); // Example constructor
         CustomArrayList<Oranges> singleElementList = new CustomArrayList<>();
         singleElementList.add(orange);
-        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(singleElementList);
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(singleElementList, Oranges::compareTo);
         assertEquals(1, sortedList.size());
         assertEquals(orange, sortedList.get(0));
     }
@@ -48,7 +48,7 @@ public class CustomQuickSortTest {
         unsortedList.add(orange2);
         unsortedList.add(orange3);
 
-        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(unsortedList);
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(unsortedList, Oranges::compareTo);
 
         assertEquals(orange2, sortedList.get(0));
         assertEquals(orange1, sortedList.get(1));
@@ -84,7 +84,7 @@ public class CustomQuickSortTest {
         sortedList.add(orange2);
         sortedList.add(orange3);
 
-        CustomArrayList<Oranges> result = CustomQuickSort.quickSort(sortedList);
+        CustomArrayList<Oranges> result = CustomQuickSort.quickSort(sortedList, Oranges::compareTo);
 
         assertEquals(orange1, result.get(0));
         assertEquals(orange2, result.get(1));

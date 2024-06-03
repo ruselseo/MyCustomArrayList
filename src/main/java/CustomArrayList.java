@@ -5,7 +5,7 @@ import java.util.*;
  *
  * @param <E> the type of elements in this list
  */
-public class CustomArrayList<E> {
+public class CustomArrayList<E>{
     private Object[] array;
     private int size;
     private final int capacity;
@@ -124,9 +124,9 @@ public class CustomArrayList<E> {
         while ((size + list.length > array.length)) {
             grow();
         }
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] != null) {
-                add((list[i]));
+        for (E e : list) {
+            if (e != null) {
+                add(e);
             }
         }
     }
@@ -223,4 +223,5 @@ public class CustomArrayList<E> {
                 Arrays.toString(array) +
                 '}';
     }
+
 }

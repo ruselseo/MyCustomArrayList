@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -5,7 +7,7 @@ import java.util.Objects;
  * Represents an orange with a specified size. This class implements {@link Comparator}
  * to compare oranges based on their size.
  */
-public class Oranges implements Comparator<Oranges> {
+public class Oranges implements Comparable<Oranges> {
     private final int size;
 
     /**
@@ -47,15 +49,14 @@ public class Oranges implements Comparator<Oranges> {
 
     /**
      * Compares two oranges based on their size.
-     *
-     * @param o1 the first orange to be compared
      * @param o2 the second orange to be compared
      * @return a negative integer, zero, or a positive integer as the first orange
      *         is less than, equal to, or greater than the second orange
      */
+
     @Override
-    public int compare(Oranges o1, Oranges o2) {
-        return o1.getSize() - o2.getSize();
+    public int compareTo(@NotNull Oranges o2) {
+        return getSize() - o2.getSize();
     }
 
     /**
@@ -82,4 +83,5 @@ public class Oranges implements Comparator<Oranges> {
     public int hashCode() {
         return Objects.hashCode(getSize());
     }
+
 }
