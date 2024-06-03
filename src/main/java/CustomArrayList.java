@@ -228,4 +228,8 @@ public class CustomArrayList<E> {
        return CustomQuickSort.quickSort((CustomArrayList<E>) this);
     }
 
+    public <E> CustomArrayList<E> sort(Comparator<E> comparator){
+       return CustomQuickSort.quickSort((CustomArrayList<E>) this, comparator);
+    }
+
 }
