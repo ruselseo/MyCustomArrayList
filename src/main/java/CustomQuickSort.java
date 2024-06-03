@@ -44,4 +44,29 @@ public class CustomQuickSort {
 
         return sorted;
     }
+
+    public static <E extends Comparable<E>> CustomArrayList<E> quickSort(CustomArrayList<E> list) {
+        if (list.isEmpty()) {
+            return list; // base case for recursion
+        }
+        CustomArrayList<E> sorted; // this will be the sorted list to return, no need to initialize
+        CustomArrayList<E> smaller = new CustomArrayList<>(); // elements smaller than pivot
+        CustomArrayList<E> greater = new CustomArrayList<>(); // elements greater than pivot
+        E pivot = list.get(0); // first element in list, used as pivot
+        for (int i = 1; i < list.size(); i++) {
+            E element = list.get(i);
+            if (element.compareTo(pivot) < 0) {
+                smaller.add(element);
+            } else {
+                greater.add(element);
+            }
+        }
+        smaller = quickSort(smaller); // sort both halves recursively
+        greater = quickSort(greater);
+        smaller.add(pivot); // add initial pivot to the end of the (now sorted) smaller elements
+        smaller.addAll(greater); // add the (now sorted) greater elements to the smaller ones (now smaller is essentially your sorted list)
+        sorted = smaller; // assign it to sorted
+
+        return sorted;
+    }
 }

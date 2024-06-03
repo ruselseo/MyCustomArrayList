@@ -224,4 +224,8 @@ public class CustomArrayList<E> {
                 '}';
     }
 
+    public <E extends Comparable<E>> CustomArrayList<E> sort(){
+       return CustomQuickSort.quickSort((CustomArrayList<E>) this);
+    }
+
 }

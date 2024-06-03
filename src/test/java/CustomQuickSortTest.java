@@ -69,6 +69,36 @@ public class CustomQuickSortTest {
         for (int i = 0; i < expectedList.size(); i++) {
             assertEquals(expectedList.get(i), sortedList.get(i));
         }
+    }@Test
+    public void ComparableQuickSortMultipleElementsTest() {
+        Oranges orange1 = new Oranges(5);
+        Oranges orange2 = new Oranges(2);
+        Oranges orange3 = new Oranges(8);
+
+        CustomArrayList<Oranges> unsortedList = new CustomArrayList<>();
+        unsortedList.add(orange1);
+        unsortedList.add(orange2);
+        unsortedList.add(orange3);
+
+        CustomArrayList<Oranges> sortedList = CustomQuickSort.quickSort(unsortedList);
+
+        assertEquals(orange2, sortedList.get(0));
+        assertEquals(orange1, sortedList.get(1));
+        assertEquals(orange3, sortedList.get(2));
+
+        assertEquals("CustomArrayList{[Oranges{size=2}, Oranges{size=5}, Oranges{size=8}," +
+                " null, null, null, null, null, null, null]}", sortedList.toString());
+
+
+        CustomArrayList<Oranges> expectedList = new CustomArrayList<>();
+        expectedList.add(orange2);
+        expectedList.add(orange1);
+        expectedList.add(orange3);
+
+        assertEquals(expectedList.size(), sortedList.size());
+        for (int i = 0; i < expectedList.size(); i++) {
+            assertEquals(expectedList.get(i), sortedList.get(i));
+        }
     }
 
     /**
